@@ -1,4 +1,5 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
+using Nutrition.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,7 +106,17 @@ namespace Nutrition.Core.ViewModels
 
         void Done()
         {
-            throw new NotImplementedException();
+            var nutritionTable = new NutritionTable
+            {
+                Carbs = Carbs.Value,
+                SugarCarbs = SugarCarbs.Value,
+                Protein = Protein.Value,
+                Fat = Fat.Value,
+                SaturatedFats = SaturatedFats.Value,
+                Salt = Salt.Value,
+            };
+
+            ShowViewModel<InfoViewModel>(nutritionTable);
         }
     }
 }
