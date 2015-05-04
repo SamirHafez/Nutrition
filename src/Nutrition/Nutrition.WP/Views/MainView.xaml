@@ -8,9 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
-            <TextBox Text="{Binding Hello, Mode=TwoWay}" />
-            <TextBlock Text="{Binding Hello}" />
-        </StackPanel>
     </Grid>
+
+    <views:MvxWindowsPage.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Command="{Binding ToManualInputCommand}" Icon="Edit" Label="Manual"/>
+        </CommandBar>
+    </views:MvxWindowsPage.BottomAppBar>
 </views:MvxWindowsPage>

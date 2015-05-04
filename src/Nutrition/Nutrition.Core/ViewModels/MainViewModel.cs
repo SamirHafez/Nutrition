@@ -1,14 +1,19 @@
 using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 namespace Nutrition.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-		private string _hello = "Hello MvvmCross";
-        public string Hello
-		{ 
-			get { return _hello; }
-			set { _hello = value; RaisePropertyChanged(() => Hello); }
-		}
+        MvxCommand toManualInputCommand;
+        public MvxCommand ToManualInputCommand
+        {
+            get
+            {
+                return toManualInputCommand ??
+                    (toManualInputCommand = new MvxCommand(
+                        () => ShowViewModel<ManualInputViewModel>()));
+            }
+        }
     }
 }
