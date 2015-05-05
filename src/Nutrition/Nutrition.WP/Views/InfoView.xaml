@@ -7,9 +7,71 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	d:DataContext="{d:DesignData /SampleData/InfoViewModelSampleData.xaml}">
+    <Hub Header="Info">
+        <HubSection Header="Geral">
+            <DataTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="70*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="0">
+                        <Run Text="{Binding KCals}"/>
+                        <Run Text="kcal" FontSize="{StaticResource TextStyleMediumFontSize}"/>
+                    </TextBlock>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border Margin="5" Padding="5" Grid.Column="0" Background="{StaticResource PhoneAccentBrush}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="60*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextWrapping="WrapWholeWords">Hidratos de carbono</TextBlock>
+                                <TextBlock Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding CarbPercentage}"/>
+                                <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border Margin="5" Padding="5" Grid.Column="1" Background="{StaticResource PhoneAccentBrush}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="60*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextWrapping="WrapWholeWords">Proteinas</TextBlock>
+                                <TextBlock Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding ProteinPercentage}"/>
+                                <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border Margin="5" Padding="5" Grid.Column="2" Background="{StaticResource PhoneAccentBrush}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40*"/>
+                                    <RowDefinition Height="60*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextWrapping="WrapWholeWords">Gordura</TextBlock>
+                                <TextBlock Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding FatPercentage}"/>
+                                <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </HubSection>
+    </Hub>
 
-    <Grid>
 
-    </Grid>
 </views:MvxWindowsPage>

@@ -1,0 +1,9 @@
+﻿<ViewModels:InfoViewModel xmlns:ViewModels="using:Nutrition.Core.ViewModels" xmlns:ViewModels1="using:Cirrious.MvvmCross.ViewModels">
+    <ViewModels:InfoViewModel.CarbPercentage>60</ViewModels:InfoViewModel.CarbPercentage>
+    <ViewModels:InfoViewModel.ProteinPercentage>30</ViewModels:InfoViewModel.ProteinPercentage>
+    <ViewModels:InfoViewModel.FatPercentage>10</ViewModels:InfoViewModel.FatPercentage>
+    <ViewModels:InfoViewModel.KCals>123</ViewModels:InfoViewModel.KCals>
+	<ViewModels:InfoViewModel.RequestedBy>
+		<ViewModels1:MvxRequestedBy AdditionalInfo="Vestibulum curabitur aenean cras aliquam" Type="Other"/>
+	</ViewModels:InfoViewModel.RequestedBy>
+</ViewModels:InfoViewModel>
