@@ -28,41 +28,41 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Border Margin="5" Padding="5" Grid.Column="0" Background="{StaticResource PhoneAccentBrush}">
+                        <Border Margin="5" Padding="10" Grid.Column="0" Background="{StaticResource PhoneAccentBrush}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="40*"/>
                                     <RowDefinition Height="60*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" TextWrapping="WrapWholeWords">Hidratos de carbono</TextBlock>
-                                <TextBlock Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
-                                <Run Text="{Binding CarbPercentage}"/>
+                                <TextBlock HorizontalAlignment="Center" Grid.Row="0" TextWrapping="WrapWholeWords">Hidratos de carbono</TextBlock>
+                                <TextBlock HorizontalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding CarbPercentage}" FontWeight="Bold"/>
                                 <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
                                 </TextBlock>
                             </Grid>
                         </Border>
-                        <Border Margin="5" Padding="5" Grid.Column="1" Background="{StaticResource PhoneAccentBrush}">
+                        <Border Margin="5" Padding="10" Grid.Column="1" Background="{StaticResource PhoneAccentBrush}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="40*"/>
                                     <RowDefinition Height="60*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" TextWrapping="WrapWholeWords">Proteinas</TextBlock>
-                                <TextBlock Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
-                                <Run Text="{Binding ProteinPercentage}"/>
+                                <TextBlock HorizontalAlignment="Center" Grid.Row="0" TextWrapping="WrapWholeWords">Proteinas</TextBlock>
+                                <TextBlock HorizontalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding ProteinPercentage}" FontWeight="Bold"/>
                                 <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
                                 </TextBlock>
                             </Grid>
                         </Border>
-                        <Border Margin="5" Padding="5" Grid.Column="2" Background="{StaticResource PhoneAccentBrush}">
+                        <Border Margin="5" Padding="10" Grid.Column="2" Background="{StaticResource PhoneAccentBrush}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="40*"/>
                                     <RowDefinition Height="60*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" TextWrapping="WrapWholeWords">Gordura</TextBlock>
-                                <TextBlock Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
-                                <Run Text="{Binding FatPercentage}"/>
+                                <TextBlock HorizontalAlignment="Center" Grid.Row="0" TextWrapping="WrapWholeWords">Gordura</TextBlock>
+                                <TextBlock HorizontalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding FatPercentage}" FontWeight="Bold"/>
                                 <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
                                 </TextBlock>
                             </Grid>

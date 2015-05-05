@@ -1,5 +1,6 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using Nutrition.Core.Models;
+using Nutrition.Core.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,13 @@ namespace Nutrition.Core.ViewModels
     public class InfoViewModel : MvxViewModel
     {
         NutritionTable nutritionTable;
+
+        bool recommended;
+        public bool Recommended
+        {
+            get { return recommended; }
+            set { recommended = value; RaisePropertyChanged(() => Recommended); }
+        }
 
         double kcals;
         public double KCals
@@ -40,6 +48,19 @@ namespace Nutrition.Core.ViewModels
             set { fatPercentage = value; RaisePropertyChanged(() => FatPercentage); }
         }
 
+        string summaryDescription;
+        public string SummaryDescription
+        {
+            get { return summaryDescription; }
+            set { summaryDescription = value; RaisePropertyChanged(() => SummaryDescription); }
+        }
+
+        readonly IHandleNutritionService NutritionService;
+        public InfoViewModel(IHandleNutritionService nutritionService)
+        {
+            NutritionService = nutritionService;
+        }
+
         protected override void InitFromBundle(IMvxBundle parameters)
         {
             UpdateTable(parameters.Read<NutritionTable>());
@@ -47,22 +68,14 @@ namespace Nutrition.Core.ViewModels
 
         void UpdateTable(NutritionTable nutritionTable)
         {
-            KCals =
-                nutritionTable.Carbs * 4 +
-                nutritionTable.Protein * 4 +
-                nutritionTable.Fat * 9;
+            var summary = NutritionService.GetSummary(nutritionTable);
 
-            CarbPercentage =
-                (nutritionTable.Carbs /
-                (nutritionTable.Carbs + nutritionTable.Protein + nutritionTable.Fat)) * 100;
-
-            ProteinPercentage =
-                (nutritionTable.Protein /
-                (nutritionTable.Carbs + nutritionTable.Protein + nutritionTable.Fat)) * 100;
-
-            FatPercentage =
-                (nutritionTable.Fat /
-                (nutritionTable.Carbs + nutritionTable.Protein + nutritionTable.Fat)) * 100;
+            Recommended = summary.Recommended;
+            KCals = summary.KCals;
+            CarbPercentage = summary.CarbPercentage;
+            ProteinPercentage = summary.ProteinPercentage;
+            FatPercentage = summary.FatPercentage;
+            SummaryDescription = summary.Description;
 
             this.nutritionTable = nutritionTable;
         }

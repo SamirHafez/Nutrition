@@ -42,6 +42,8 @@
     <Compile Include="Converters\StringToDoubleConverter.cs" />
     <Compile Include="Models\NutritionTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HandleNutritionService.cs" />
+    <Compile Include="Services\Interfaces\IHandleNutritionService.cs" />
     <Compile Include="Services\Interfaces\IOCRService.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
