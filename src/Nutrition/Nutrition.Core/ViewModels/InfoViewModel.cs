@@ -13,11 +13,11 @@ namespace Nutrition.Core.ViewModels
     {
         NutritionTable nutritionTable;
 
-        bool recommended;
-        public bool Recommended
+        double score;
+        public double Score
         {
-            get { return recommended; }
-            set { recommended = value; RaisePropertyChanged(() => Recommended); }
+            get { return score; }
+            set { score = value; RaisePropertyChanged(() => Score); }
         }
 
         double kcals;
@@ -48,6 +48,27 @@ namespace Nutrition.Core.ViewModels
             set { fatPercentage = value; RaisePropertyChanged(() => FatPercentage); }
         }
 
+        double carbKCals;
+        public double CarbKCals
+        {
+            get { return carbKCals; }
+            set { carbKCals = value; RaisePropertyChanged(() => CarbKCals); }
+        }
+
+        double proteinKCals;
+        public double ProteinKCals
+        {
+            get { return proteinKCals; }
+            set { proteinKCals = value; RaisePropertyChanged(() => ProteinKCals); }
+        }
+
+        double fatKCals;
+        public double FatKCals
+        {
+            get { return fatKCals; }
+            set { fatKCals = value; RaisePropertyChanged(() => FatKCals); }
+        }
+
         string summaryDescription;
         public string SummaryDescription
         {
@@ -69,13 +90,18 @@ namespace Nutrition.Core.ViewModels
         void UpdateTable(NutritionTable nutritionTable)
         {
             var summary = NutritionService.GetSummary(nutritionTable);
+            var balance = NutritionService.GetBalance(nutritionTable);
 
-            Recommended = summary.Recommended;
-            KCals = summary.KCals;
-            CarbPercentage = summary.CarbPercentage;
-            ProteinPercentage = summary.ProteinPercentage;
-            FatPercentage = summary.FatPercentage;
+            Score = summary.Score;
             SummaryDescription = summary.Description;
+
+            KCals = balance.KCals;
+            CarbPercentage = balance.CarbPercentage;
+            ProteinPercentage = balance.ProteinPercentage;
+            FatPercentage = balance.FatPercentage;
+            CarbKCals = balance.CarbsKCals;
+            ProteinKCals = balance.ProteinKCals;
+            FatKCals = balance.FatKCals;
 
             this.nutritionTable = nutritionTable;
         }

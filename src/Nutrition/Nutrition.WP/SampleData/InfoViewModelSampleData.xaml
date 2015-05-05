@@ -3,6 +3,11 @@
     <ViewModels:InfoViewModel.ProteinPercentage>30</ViewModels:InfoViewModel.ProteinPercentage>
     <ViewModels:InfoViewModel.FatPercentage>10</ViewModels:InfoViewModel.FatPercentage>
     <ViewModels:InfoViewModel.KCals>123</ViewModels:InfoViewModel.KCals>
+    <ViewModels:InfoViewModel.CarbKCals>40</ViewModels:InfoViewModel.CarbKCals>
+    <ViewModels:InfoViewModel.ProteinKCals>80</ViewModels:InfoViewModel.ProteinKCals>
+    <ViewModels:InfoViewModel.FatKCals>90</ViewModels:InfoViewModel.FatKCals>
+    <ViewModels:InfoViewModel.SummaryDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus eros diam, eget semper odio pharetra in. Nullam fermentum pulvinar lorem porta blandit. Pellentesque cursus dolor vel libero sagittis, a mattis ante imperdiet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi eget tellus id sem rhoncus pulvinar. Mauris pretium felis vel imperdiet sodales. Praesent sollicitudin erat et molestie aliquam. Duis finibus vel lectus vitae varius.</ViewModels:InfoViewModel.SummaryDescription>
+    <ViewModels:InfoViewModel.Score>3.5</ViewModels:InfoViewModel.Score>
 	<ViewModels:InfoViewModel.RequestedBy>
 		<ViewModels1:MvxRequestedBy AdditionalInfo="Vestibulum curabitur aenean cras aliquam" Type="Other"/>
 	</ViewModels:InfoViewModel.RequestedBy>

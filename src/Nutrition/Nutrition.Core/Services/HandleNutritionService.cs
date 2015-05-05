@@ -19,9 +19,24 @@ namespace Nutrition.Core.Services
                 this.nutritionTable = table;
             }
 
-            public bool Recommended
+            public double Score
             {
                 get { throw new NotImplementedException(); }
+            }
+
+            public string Description
+            {
+                get { throw new NotImplementedException(); }
+            }
+        }
+
+        public class HealthBalance : IHealthBalance
+        {
+            readonly NutritionTable nutritionTable;
+
+            public HealthBalance(NutritionTable table)
+            {
+                this.nutritionTable = table;
             }
 
             public double KCals
@@ -59,17 +74,32 @@ namespace Nutrition.Core.Services
                     return Math.Round((nutritionTable.Fat /
                            (nutritionTable.Carbs + nutritionTable.Protein + nutritionTable.Fat)) * 100, 1);
                 }
+            } 
+
+            public double CarbsKCals
+            {
+                get { return Math.Round(nutritionTable.Carbs * 4, 1); }
             }
 
-            public string Description
+            public double ProteinKCals
             {
-                get { throw new NotImplementedException(); }
+                get { return Math.Round(nutritionTable.Protein * 4, 1); }
+            }
+
+            public double FatKCals
+            {
+                get { return Math.Round(nutritionTable.Fat * 9, 1); }
             }
         }
 
         public IHealthSummary GetSummary(NutritionTable table)
         {
             return new HealthSummary(table);
+        }
+
+        public IHealthBalance GetBalance(NutritionTable table)
+        {
+            return new HealthBalance(table);
         }
     }
 }

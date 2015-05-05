@@ -10,68 +10,91 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	d:DataContext="{d:DesignData /SampleData/InfoViewModelSampleData.xaml}">
     <Hub Header="Info">
-        <HubSection Header="Geral">
+        <HubSection Header="Resumo">
             <DataTemplate>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="0">
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="{Binding Score}" HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}"/>
+                        <ProgressBar Foreground="{StaticResource PhoneAccentBrush}" Value="{Binding Score}" Maximum="5" Minimum="0"/>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" TextWrapping="WrapWholeWords" TextAlignment="Justify" Grid.Row="1" Text="{Binding SummaryDescription}"/>
+                </Grid>
+            </DataTemplate>
+        </HubSection>
+        <HubSection Header="Balanço Calórico">
+            <DataTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="85*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="5,0,0,0" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="0">
                         <Run Text="{Binding KCals}"/>
                         <Run Text="kcal" FontSize="{StaticResource TextStyleMediumFontSize}"/>
                     </TextBlock>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="103"/>
+                            <ColumnDefinition Width="103"/>
+                            <ColumnDefinition Width="103"/>
                         </Grid.ColumnDefinitions>
-                        <Border Margin="5" Padding="10" Grid.Column="0" Background="{StaticResource PhoneAccentBrush}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="40*"/>
-                                    <RowDefinition Height="60*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Grid.Row="0" TextWrapping="WrapWholeWords">Hidratos de carbono</TextBlock>
-                                <TextBlock HorizontalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
-                                <Run Text="{Binding CarbPercentage}" FontWeight="Bold"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="103"/>
+                            <RowDefinition Height="103"/>
+                            <RowDefinition Height="103"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" TextWrapping="WrapWholeWords">Hidratos de Carbono</TextBlock>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="WrapWholeWords">Proteina</TextBlock>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="WrapWholeWords">Gordura</TextBlock>
+                        <Border Margin="5" Padding="10" Grid.Row="1" Grid.Column="0" Background="{StaticResource PhoneAccentBrush}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding CarbPercentage}" FontWeight="ExtraBold"/>
                                 <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
-                                </TextBlock>
-                            </Grid>
+                            </TextBlock>
                         </Border>
-                        <Border Margin="5" Padding="10" Grid.Column="1" Background="{StaticResource PhoneAccentBrush}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="40*"/>
-                                    <RowDefinition Height="60*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Grid.Row="0" TextWrapping="WrapWholeWords">Proteinas</TextBlock>
-                                <TextBlock HorizontalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
-                                <Run Text="{Binding ProteinPercentage}" FontWeight="Bold"/>
+                        <Border Margin="5" Padding="10" Grid.Row="1" Grid.Column="1" Background="{StaticResource PhoneAccentBrush}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding ProteinPercentage}" FontWeight="ExtraBold"/>
                                 <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
-                                </TextBlock>
-                            </Grid>
+                            </TextBlock>
                         </Border>
-                        <Border Margin="5" Padding="10" Grid.Column="2" Background="{StaticResource PhoneAccentBrush}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="40*"/>
-                                    <RowDefinition Height="60*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Grid.Row="0" TextWrapping="WrapWholeWords">Gordura</TextBlock>
-                                <TextBlock HorizontalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
-                                <Run Text="{Binding FatPercentage}" FontWeight="Bold"/>
+                        <Border Margin="5" Padding="10" Grid.Row="1" Grid.Column="2" Background="{StaticResource PhoneAccentBrush}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding FatPercentage}" FontWeight="ExtraBold"/>
                                 <Run Text="%" FontSize="{StaticResource TextStyleSmallFontSize}"/>
-                                </TextBlock>
-                            </Grid>
+                            </TextBlock>
+                        </Border>
+
+                        <Border Margin="5" Padding="10" Grid.Row="2" Grid.Column="0" Background="{StaticResource PhoneAccentBrush}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding CarbKCals}" FontWeight="ExtraBold"/>
+                                <Run Text="kcal" FontSize="{StaticResource TextStyleSmallFontSize}"/>
+                            </TextBlock>
+                        </Border>
+                        <Border Margin="5" Padding="10" Grid.Row="2" Grid.Column="1" Background="{StaticResource PhoneAccentBrush}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding ProteinKCals}" FontWeight="ExtraBold"/>
+                                <Run Text="kcal" FontSize="{StaticResource TextStyleSmallFontSize}"/>
+                            </TextBlock>
+                        </Border>
+                        <Border Margin="5" Padding="10" Grid.Row="2" Grid.Column="2" Background="{StaticResource PhoneAccentBrush}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding FatKCals}" FontWeight="ExtraBold"/>
+                                <Run Text="kcal" FontSize="{StaticResource TextStyleSmallFontSize}"/>
+                            </TextBlock>
                         </Border>
                     </Grid>
                 </Grid>
             </DataTemplate>
         </HubSection>
+        <HubSection Header="Gordura"></HubSection>
+        <HubSection Header="Sal"></HubSection>
+        <HubSection Header="Fibra"></HubSection>
+        <HubSection Header="Açúcar"></HubSection>
     </Hub>
-
-
 </views:MvxWindowsPage>

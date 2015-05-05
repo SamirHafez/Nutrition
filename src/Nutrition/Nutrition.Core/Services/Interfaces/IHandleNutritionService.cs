@@ -9,17 +9,25 @@ namespace Nutrition.Core.Services.Interfaces
 {
     public interface IHealthSummary
     {
-        bool Recommended { get; }
+        double Score { get; }
+        string Description { get; }
+    }
+
+    public interface IHealthBalance
+    {
         double KCals { get; }
         double CarbPercentage { get; }
         double ProteinPercentage { get; }
         double FatPercentage { get; }
 
-        string Description { get; }
+        double CarbsKCals { get; }
+        double ProteinKCals { get; }
+        double FatKCals { get; }
     }
 
     public interface IHandleNutritionService
     {
         IHealthSummary GetSummary(NutritionTable table);
+        IHealthBalance GetBalance(NutritionTable table);
     }
 }
