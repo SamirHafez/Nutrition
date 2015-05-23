@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using Nutrition.Core.Utils;
+using Nutrition.Core.ViewModels;
+using System;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -27,6 +25,46 @@ namespace Nutrition.WP
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
         }
+
+        protected async override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+
+            var continuationEventArgs = args as IContinuationActivatedEventArgs;
+            if (continuationEventArgs != null)
+            {
+                switch (continuationEventArgs.Kind)
+                {
+                    case ActivationKind.PickFileContinuation:
+                        FileOpenPickerContinuationEventArgs arguments = continuationEventArgs as FileOpenPickerContinuationEventArgs;
+                        StorageFile file = arguments.Files.FirstOrDefault();
+                        var messenger = Mvx.Resolve<IMvxMessenger>();
+                        var message = new PictureMessage(this);
+                        var picture = await ReadFile(file);
+                        message.Picture = picture;
+                        messenger.Publish(message);
+                        break;
+                }
+            }
+        }
+
+        public async Task<byte[]> ReadFile(StorageFile file)
+        { 
+            byte[] fileBytes = null; 
+            using (IRandomAccessStreamWithContentType stream = await file.OpenReadAsync()) 
+            { 
+                fileBytes = new byte[stream.Size]; 
+                using (DataReader reader = new DataReader(stream)) 
+                { 
+                    await reader.LoadAsync((uint)stream.Size); 
+                    reader.ReadBytes(fileBytes); 
+                } 
+            } 
+
+            return fileBytes; 
+        }
+
+
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {

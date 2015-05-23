@@ -10,26 +10,6 @@ namespace Nutrition.Core.Services
 {
     public class HandleNutritionService : IHandleNutritionService
     {
-        class HealthSummary : IHealthSummary
-        {
-            readonly NutritionTable nutritionTable;
-
-            public HealthSummary(NutritionTable table)
-            {
-                this.nutritionTable = table;
-            }
-
-            public double Score
-            {
-                get { throw new NotImplementedException(); }
-            }
-
-            public string Description
-            {
-                get { throw new NotImplementedException(); }
-            }
-        }
-
         public class HealthBalance : IHealthBalance
         {
             readonly NutritionTable nutritionTable;
@@ -74,7 +54,7 @@ namespace Nutrition.Core.Services
                     return Math.Round((nutritionTable.Fat /
                            (nutritionTable.Carbs + nutritionTable.Protein + nutritionTable.Fat)) * 100, 1);
                 }
-            } 
+            }
 
             public double CarbsKCals
             {
@@ -92,9 +72,9 @@ namespace Nutrition.Core.Services
             }
         }
 
-        public IHealthSummary GetSummary(NutritionTable table)
+        public double GetScore(NutritionTable table)
         {
-            return new HealthSummary(table);
+            throw new NotImplementedException();
         }
 
         public IHealthBalance GetBalance(NutritionTable table)

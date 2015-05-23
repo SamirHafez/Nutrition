@@ -8,11 +8,13 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <CaptureElement Name="cePhoto" Stretch="UniformToFill"></CaptureElement>
     </Grid>
 
     <views:MvxWindowsPage.BottomAppBar>
         <CommandBar>
             <AppBarButton Command="{Binding ToManualInputCommand}" Icon="Edit" Label="Manual"/>
+            <AppBarButton Command="{Binding ToCameraInputCommand}"  Icon="Camera" Label="Camera"></AppBarButton>
         </CommandBar>
     </views:MvxWindowsPage.BottomAppBar>
 </views:MvxWindowsPage>

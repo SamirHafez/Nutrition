@@ -1,18 +1,7 @@
 ﻿using Nutrition.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nutrition.Core.Services.Interfaces
 {
-    public interface IHealthSummary
-    {
-        double Score { get; }
-        string Description { get; }
-    }
-
     public interface IHealthBalance
     {
         double KCals { get; }
@@ -27,7 +16,7 @@ namespace Nutrition.Core.Services.Interfaces
 
     public interface IHandleNutritionService
     {
-        IHealthSummary GetSummary(NutritionTable table);
+        double GetScore(NutritionTable table);
         IHealthBalance GetBalance(NutritionTable table);
     }
 }

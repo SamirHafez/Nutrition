@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutrition.Core", "Nutrition.Core\Nutrition.Core.csproj", "{4731E529-189D-4AE3-BC56-D3AF1A5037B5}"
 EndProject
@@ -20,7 +20,9 @@ Global
 		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Debug|ARM.Build.0 = Debug|Any CPU
 		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Debug|x86.Build.0 = Debug|Any CPU
 		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4731E529-189D-4AE3-BC56-D3AF1A5037B5}.Release|ARM.ActiveCfg = Release|Any CPU

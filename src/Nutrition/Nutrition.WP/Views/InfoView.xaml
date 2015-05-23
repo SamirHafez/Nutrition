@@ -9,6 +9,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	d:DataContext="{d:DesignData /SampleData/InfoViewModelSampleData.xaml}">
+    <views:MvxWindowsPage.Resources>
+        <DataTemplate x:Key="SummaryItemTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="90*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Column="1" Text="{Binding Summary}"/>
+            </Grid>
+        </DataTemplate>
+    </views:MvxWindowsPage.Resources>
     <Hub Header="Info">
         <HubSection Header="Resumo">
             <DataTemplate>
@@ -18,14 +29,17 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0">
-                        <TextBlock Text="{Binding Score}" HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}"/>
-                        <ProgressBar Foreground="{StaticResource PhoneAccentBrush}" Value="{Binding Score}" Maximum="5" Minimum="0"/>
+                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}">
+                            <Run Text="{Binding Score}"/>
+                            <Run Text="/ 100" FontSize="{StaticResource TextStyleMediumFontSize}"/>
+                        </TextBlock>
+                        <ProgressBar Foreground="{StaticResource PhoneAccentBrush}" Value="{Binding Score}" Maximum="100" Minimum="0"/>
                     </StackPanel>
-                    <TextBlock Style="{StaticResource BodyTextBlockStyle}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" TextWrapping="WrapWholeWords" TextAlignment="Justify" Grid.Row="1" Text="{Binding SummaryDescription}"/>
+                    <ListView Grid.Row="1" ItemsSource="{Binding SummaryItems}" ItemTemplate="{StaticResource SummaryItemTemplate}"></ListView>
                 </Grid>
             </DataTemplate>
         </HubSection>
-        <HubSection Header="Balanço Calórico">
+        <HubSection DataContext="{Binding Balance}" Header="Balanço Calórico">
             <DataTemplate>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -92,9 +106,5 @@
                 </Grid>
             </DataTemplate>
         </HubSection>
-        <HubSection Header="Gordura"></HubSection>
-        <HubSection Header="Sal"></HubSection>
-        <HubSection Header="Fibra"></HubSection>
-        <HubSection Header="Açúcar"></HubSection>
     </Hub>
 </views:MvxWindowsPage>

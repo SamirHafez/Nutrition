@@ -1,14 +1,18 @@
-﻿<ViewModels:InfoViewModel xmlns:ViewModels="using:Nutrition.Core.ViewModels" xmlns:ViewModels1="using:Cirrious.MvvmCross.ViewModels">
-    <ViewModels:InfoViewModel.CarbPercentage>60</ViewModels:InfoViewModel.CarbPercentage>
-    <ViewModels:InfoViewModel.ProteinPercentage>30</ViewModels:InfoViewModel.ProteinPercentage>
-    <ViewModels:InfoViewModel.FatPercentage>10</ViewModels:InfoViewModel.FatPercentage>
-    <ViewModels:InfoViewModel.KCals>123</ViewModels:InfoViewModel.KCals>
-    <ViewModels:InfoViewModel.CarbKCals>40</ViewModels:InfoViewModel.CarbKCals>
-    <ViewModels:InfoViewModel.ProteinKCals>80</ViewModels:InfoViewModel.ProteinKCals>
-    <ViewModels:InfoViewModel.FatKCals>90</ViewModels:InfoViewModel.FatKCals>
-    <ViewModels:InfoViewModel.SummaryDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus eros diam, eget semper odio pharetra in. Nullam fermentum pulvinar lorem porta blandit. Pellentesque cursus dolor vel libero sagittis, a mattis ante imperdiet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi eget tellus id sem rhoncus pulvinar. Mauris pretium felis vel imperdiet sodales. Praesent sollicitudin erat et molestie aliquam. Duis finibus vel lectus vitae varius.</ViewModels:InfoViewModel.SummaryDescription>
-    <ViewModels:InfoViewModel.Score>3.5</ViewModels:InfoViewModel.Score>
+﻿<ViewModels:InfoViewModel xmlns:ViewModels="using:Nutrition.Core.ViewModels" xmlns:ViewModels1="using:Cirrious.MvvmCross.ViewModels" Score="85">
+	<ViewModels:InfoViewModel.Balance>
+		<ViewModels:BalanceViewModel CarbKCals="540.3" CarbPercentage="50" FatKCals="447.1" FatPercentage="20" KCals="349.3" ProteinPercentage="30" ProteinKCals="901.5">
+			<ViewModels:BalanceViewModel.RequestedBy>
+				<ViewModels1:MvxRequestedBy AdditionalInfo="Vestibulum aliquam aenean maecenas integer" Type="AutomatedService"/>
+			</ViewModels:BalanceViewModel.RequestedBy>
+		</ViewModels:BalanceViewModel>
+	</ViewModels:InfoViewModel.Balance>
+    <ViewModels:InfoViewModel.SummaryItems>
+        <ViewModels:SummaryItemViewModel Summary="Vestibulum aliquam aenean maecenas integer"/>
+        <ViewModels:SummaryItemViewModel Summary="Praesent mauris donec"/>
+        <ViewModels:SummaryItemViewModel Summary="aenean maecenas integer"/>
+        <ViewModels:SummaryItemViewModel Summary="Praesent mauris donec vestibulum aliquam aenean maecenas integer"/>
+    </ViewModels:InfoViewModel.SummaryItems>
 	<ViewModels:InfoViewModel.RequestedBy>
-		<ViewModels1:MvxRequestedBy AdditionalInfo="Vestibulum curabitur aenean cras aliquam" Type="Other"/>
+		<ViewModels1:MvxRequestedBy AdditionalInfo="Praesent mauris donec" Type="UserAction"/>
 	</ViewModels:InfoViewModel.RequestedBy>
 </ViewModels:InfoViewModel>

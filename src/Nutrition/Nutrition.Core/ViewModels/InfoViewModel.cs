@@ -1,18 +1,13 @@
-﻿using Cirrious.MvvmCross.ViewModels;
+﻿using Cirrious.CrossCore;
+using Cirrious.MvvmCross.ViewModels;
 using Nutrition.Core.Models;
 using Nutrition.Core.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Nutrition.Core.ViewModels
 {
     public class InfoViewModel : MvxViewModel
     {
-        NutritionTable nutritionTable;
-
         double score;
         public double Score
         {
@@ -20,60 +15,18 @@ namespace Nutrition.Core.ViewModels
             set { score = value; RaisePropertyChanged(() => Score); }
         }
 
-        double kcals;
-        public double KCals
+        ObservableCollection<SummaryItemViewModel> summaryItems;
+        public ObservableCollection<SummaryItemViewModel> SummaryItems
         {
-            get { return kcals; }
-            set { kcals = value; RaisePropertyChanged(() => KCals); }
+            get { return summaryItems; }
+            set { summaryItems = value; RaisePropertyChanged(() => SummaryItems); }
         }
 
-        double carbPercentage;
-        public double CarbPercentage
+        BalanceViewModel balance;
+        public BalanceViewModel Balance
         {
-            get { return carbPercentage; }
-            set { carbPercentage = value; RaisePropertyChanged(() => CarbPercentage); }
-        }
-
-        double proteinPercentage;
-        public double ProteinPercentage
-        {
-            get { return proteinPercentage; }
-            set { proteinPercentage = value; RaisePropertyChanged(() => ProteinPercentage); }
-        }
-
-        double fatPercentage;
-        public double FatPercentage
-        {
-            get { return fatPercentage; }
-            set { fatPercentage = value; RaisePropertyChanged(() => FatPercentage); }
-        }
-
-        double carbKCals;
-        public double CarbKCals
-        {
-            get { return carbKCals; }
-            set { carbKCals = value; RaisePropertyChanged(() => CarbKCals); }
-        }
-
-        double proteinKCals;
-        public double ProteinKCals
-        {
-            get { return proteinKCals; }
-            set { proteinKCals = value; RaisePropertyChanged(() => ProteinKCals); }
-        }
-
-        double fatKCals;
-        public double FatKCals
-        {
-            get { return fatKCals; }
-            set { fatKCals = value; RaisePropertyChanged(() => FatKCals); }
-        }
-
-        string summaryDescription;
-        public string SummaryDescription
-        {
-            get { return summaryDescription; }
-            set { summaryDescription = value; RaisePropertyChanged(() => SummaryDescription); }
+            get { return balance; }
+            set { balance = value; RaisePropertyChanged(() => Balance); }
         }
 
         readonly IHandleNutritionService NutritionService;
@@ -84,26 +37,12 @@ namespace Nutrition.Core.ViewModels
 
         protected override void InitFromBundle(IMvxBundle parameters)
         {
-            UpdateTable(parameters.Read<NutritionTable>());
-        }
+            var nutritionTable = parameters.Read<NutritionTable>();
 
-        void UpdateTable(NutritionTable nutritionTable)
-        {
-            var summary = NutritionService.GetSummary(nutritionTable);
-            var balance = NutritionService.GetBalance(nutritionTable);
+            Score = NutritionService.GetScore(nutritionTable);
 
-            Score = summary.Score;
-            SummaryDescription = summary.Description;
-
-            KCals = balance.KCals;
-            CarbPercentage = balance.CarbPercentage;
-            ProteinPercentage = balance.ProteinPercentage;
-            FatPercentage = balance.FatPercentage;
-            CarbKCals = balance.CarbsKCals;
-            ProteinKCals = balance.ProteinKCals;
-            FatKCals = balance.FatKCals;
-
-            this.nutritionTable = nutritionTable;
+            Balance = Mvx.Create<BalanceViewModel>();
+            Balance.Update(nutritionTable);
         }
     }
 }
