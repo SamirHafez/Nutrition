@@ -47,7 +47,7 @@ namespace Nutrition.Core.ViewModels
 
         async Task OnPictureReceivedAsync(PictureMessage message)
         {
-            var nutritionTable = await OCRService.GetTableAsync(message.Picture, 400, 400);
+            var nutritionTable = await OCRService.GetTableAsync(message.Picture, message.Width, message.Height);
             ShowViewModel<InfoViewModel>(nutritionTable);
         }
     }

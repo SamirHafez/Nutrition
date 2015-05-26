@@ -1,10 +1,9 @@
 ﻿using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using Nutrition.Core.Utils;
-using Nutrition.Core.ViewModels;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Storage;
@@ -39,32 +38,24 @@ namespace Nutrition.WP
                         FileOpenPickerContinuationEventArgs arguments = continuationEventArgs as FileOpenPickerContinuationEventArgs;
                         StorageFile file = arguments.Files.FirstOrDefault();
                         var messenger = Mvx.Resolve<IMvxMessenger>();
-                        var message = new PictureMessage(this);
-                        var picture = await ReadFile(file);
-                        message.Picture = picture;
-                        messenger.Publish(message);
+
+                        using (var imgStream = await file.OpenAsync(FileAccessMode.Read))
+                        {
+                            var buffer = new byte[imgStream.Size];
+                            await imgStream.ReadAsync(buffer.AsBuffer(), (uint)imgStream.Size, InputStreamOptions.None);
+                            var properties = await file.Properties.GetImagePropertiesAsync();
+                            var message = new PictureMessage(this)
+                            {
+                                Width = properties.Width,
+                                Height = properties.Height,
+                                Picture = buffer
+                            };
+                            messenger.Publish(message);
+                        } 
                         break;
                 }
             }
         }
-
-        public async Task<byte[]> ReadFile(StorageFile file)
-        { 
-            byte[] fileBytes = null; 
-            using (IRandomAccessStreamWithContentType stream = await file.OpenReadAsync()) 
-            { 
-                fileBytes = new byte[stream.Size]; 
-                using (DataReader reader = new DataReader(stream)) 
-                { 
-                    await reader.LoadAsync((uint)stream.Size); 
-                    reader.ReadBytes(fileBytes); 
-                } 
-            } 
-
-            return fileBytes; 
-        }
-
-
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
