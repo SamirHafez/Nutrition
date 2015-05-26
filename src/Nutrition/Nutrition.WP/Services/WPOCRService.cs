@@ -26,6 +26,8 @@ namespace Nutrition.WP.Services
         {
             var ocrString = await OCRAsync(picture, width, height);
 
+            await new Windows.UI.Popups.MessageDialog(ocrString).ShowAsync();
+
             return NutritionTable.Parse(ocrString);
         }
 
@@ -34,7 +36,7 @@ namespace Nutrition.WP.Services
             var bitmap = new WriteableBitmap((int)width, (int)height);
 
             var memoryStream = new MemoryStream(buffer);
-            bitmap.SetSource(memoryStream.AsRandomAccessStream());
+            await bitmap.SetSourceAsync(memoryStream.AsRandomAccessStream());
 
             if (bitmap.PixelHeight < 40 ||
                 bitmap.PixelHeight > 2600 ||
